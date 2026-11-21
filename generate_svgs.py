@@ -23,38 +23,69 @@ def get_svg(index, title):
     # Reusable components
     def person(x, y, scale=1, color="#ffcc99", crown=False, bow=False, staff=False, hair=True, sari=False):
         res = f'<g transform="translate({x},{y}) scale({scale})">'
-        # Hair/Bun
+        # Aura / Divine halo
+        res += f'<circle cx="0" cy="-5" r="35" fill="{accent}" opacity="0.12" filter="url(#glow)"/>'
+        # Detailed Head & Crown
         if hair:
-            res += f'<circle cx="0" cy="-10" r="12" fill="#1a1a1a"/>'
-        # Body
-        body_color = "#ff9933" if not sari else "#ff4444"
-        res += f'<path d="M -15 20 L 15 20 L 25 80 L -25 80 Z" fill="{body_color}" stroke="{accent}" stroke-width="0.5"/>'
-        res += f'<path d="M -15 20 L 15 20 L 10 40 L -10 40 Z" fill="#3d1212"/>'
-        # Head
-        res += f'<circle cx="0" cy="0" r="18" fill="{color}"/>'
+            res += f'<path d="M -15 -18 C -15 -35 15 -35 15 -18 C 18 -10 15 5 15 5 L -15 5 C -15 5 -18 -10 -15 -18 Z" fill="#2b1810"/>'
+        res += f'<circle cx="0" cy="0" r="18" fill="{color}" stroke="{accent}" stroke-width="0.8"/>'
+        # Facial details
+        res += f'<circle cx="-5" cy="-2" r="2" fill="#333"/><circle cx="5" cy="-2" r="2" fill="#333"/><path d="M -3 5 Q 0 8 3 5" fill="none" stroke="#333" stroke-width="1.2"/>'
         if crown:
-            res += f'<path d="M -15 -12 L 15 -12 L 0 -35 Z" fill="{accent}" filter="url(#glow)"/>'
-            res += f'<circle cx="0" cy="-20" r="3" fill="red"/>'
+            res += f'<path d="M -16 -14 L -20 -35 L -8 -22 L 0 -42 L 8 -22 L 20 -35 L 16 -14 Z" fill="url(#goldGrad)" filter="url(#glow)" stroke="#b38f00" stroke-width="1"/>'
+            res += f'<circle cx="0" cy="-30" r="4" fill="#ff3333"/><circle cx="-12" cy="-25" r="2.5" fill="#33ff33"/><circle cx="12" cy="-25" r="2.5" fill="#3333ff"/>'
+        # Detailed Robe / Attire
+        body_color = "#ff8c00" if not sari else "#e63946"
+        res += f'<path d="M -22 18 Q 0 15 22 18 L 35 85 L 18 90 L 0 75 L -18 90 L -35 85 Z" fill="{body_color}" stroke="{accent}" stroke-width="1.5"/>'
+        res += f'<path d="M -15 18 L 15 18 L 22 55 L -22 55 Z" fill="#ffd700" opacity="0.25"/>' # Sash
+        # Jewelry / Mala
+        res += f'<path d="M -10 20 Q 0 35 10 20" fill="none" stroke="{accent}" stroke-width="2.5"/>'
+        res += f'<circle cx="0" cy="30" r="3" fill="#ff4444"/>'
         if bow:
-            res += f'<path d="M 25 -30 Q 70 25 25 80" fill="none" stroke="{accent}" stroke-width="3"/>'
-            res += f'<line x1="25" y1="-30" x2="25" y2="80" stroke="white" stroke-width="0.5"/>'
+            res += f'<path d="M 28 -40 Q 80 25 28 90" fill="none" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>'
+            res += f'<line x1="28" y1="-40" x2="28" y2="90" stroke="#fff" stroke-width="1.2"/>'
+            res += f'<path d="M 24 15 L 35 25 L 24 35" fill="none" stroke="{accent}" stroke-width="2"/>' # Arrow
         if staff:
-            res += f'<line x1="-25" y1="-40" x2="-25" y2="80" stroke="#8b4513" stroke-width="4"/>'
+            res += f'<line x1="-30" y1="-50" x2="-30" y2="95" stroke="#8b4513" stroke-width="6" stroke-linecap="round"/>'
+            res += f'<circle cx="-30" cy="-52" r="6" fill="url(#goldGrad)"/>'
         res += '</g>'
         return res
 
     def tree(x, y, scale=1):
-        return f'<g transform="translate({x},{y}) scale({scale})"><path d="M 0 0 L -10 40 L 10 40 Z" fill="#432818"/><circle cx="0" cy="0" r="30" fill="#1a5d00" opacity="0.8"/></g>'
+        return f'''<g transform="translate({x},{y}) scale({scale})">
+            <path d="M -6 50 L 6 50 L 8 -10 L -8 -10 Z" fill="#5c3a21"/>
+            <circle cx="0" cy="-20" r="45" fill="#1b4d1b" opacity="0.9"/>
+            <circle cx="-25" cy="-5" r="30" fill="#2d6a2d" opacity="0.85"/>
+            <circle cx="25" cy="-5" r="30" fill="#2d6a2d" opacity="0.85"/>
+            <circle cx="0" cy="-50" r="35" fill="#388e3c" opacity="0.9"/>
+        </g>'''
 
-    def mountain(x, y, w, h, color="#333"):
-        return f'<path d="M {x} {y} L {x+w/2} {y-h} L {x+w} {y} Z" fill="{color}" opacity="0.4"/>'
+    def mountain(x, y, w, h, color="#37474f"):
+        return f'''<g transform="translate({x},{y})">
+            <path d="M 0 0 L {w/2} {-h} L {w} 0 Z" fill="{color}" opacity="0.75"/>
+            <path d="M {w/4} {-h/2} L {w/2} {-h} L {w*0.75} {-h/2} Z" fill="#ffffff" opacity="0.25"/> <!-- Snow cap -->
+        </g>'''
 
-    def sun(x, y, r, color="#ffd700"):
+    def sun(x, y, r, color="#ffeb3b"):
         res = f'<circle cx="{x}" cy="{y}" r="{r}" fill="{color}" filter="url(#glow)"/>'
-        for i in range(12):
-            angle = i * 30
-            res += f'<line x1="{x}" y1="{y}" x2="{x}" y2="{y-r-20}" stroke="{color}" stroke-width="2" transform="rotate({angle}, {x}, {y})" opacity="0.5"/>'
+        for i in range(16):
+            angle = i * 22.5
+            res += f'<line x1="{x}" y1="{y}" x2="{x}" y2="{y-r-25}" stroke="{color}" stroke-width="3" stroke-linecap="round" transform="rotate({angle}, {x}, {y})" opacity="0.7"/>'
         return res
+
+    def palace(x, y, scale=1):
+        return f'''<g transform="translate({x},{y}) scale({scale})">
+            <rect x="-120" y="0" width="240" height="150" fill="#fff3e0" stroke="#b38f00" stroke-width="2"/>
+            <path d="M -140 0 L 140 0 L 120 -25 L -120 -25 Z" fill="#ff8c00"/>
+            <!-- Domes -->
+            <path d="M -70 0 Q -70 -90 0 -110 Q 70 -90 70 0 Z" fill="url(#goldGrad)" filter="url(#glow)"/>
+            <path d="M -110 0 Q -110 -60 -80 -70 Q -50 -60 -50 0 Z" fill="url(#goldGrad)"/>
+            <path d="M 50 0 Q 50 -60 80 -70 Q 110 -60 110 0 Z" fill="url(#goldGrad)"/>
+            <!-- Pillars & Entrance -->
+            <rect x="-30" y="40" width="60" height="110" rx="30" fill="#3e2723"/>
+            <line x1="-15" y1="40" x2="-15" y2="150" stroke="{accent}" stroke-width="4"/>
+            <line x1="15" y1="40" x2="15" y2="150" stroke="{accent}" stroke-width="4"/>
+        </g>'''
 
     # Background elements based on palette
     bg_elements = sun(700, 80, 40, accent)
