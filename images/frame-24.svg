@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg24" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d0b00"/>
+      <stop offset="100%" stop-color="#5d1a1a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="50%" stop-color="#ffd700"/>
+      <stop offset="100%" stop-color="#b38f00"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg24)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  
+  <circle cx="700" cy="80" r="40" fill="#ffd700" filter="url(#glow)"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(0, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(30, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(60, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(90, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(120, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(150, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(180, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(210, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(240, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(270, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(300, 700, 80)" opacity="0.5"/><line x1="700" y1="80" x2="700" y2="20" stroke="#ffd700" stroke-width="2" transform="rotate(330, 700, 80)" opacity="0.5"/><rect x="0" y="300" width="800" height="100" fill="#3d1212" opacity="0.3"/><path d="M 0 300 L 800 300" stroke="#ffd700" stroke-width="2" stroke-dasharray="10,10"/>
+
+  <!-- Decorative Border -->
+  <rect x="15" y="15" width="770" height="470" rx="15" fill="none" stroke="url(#goldGrad)" stroke-width="6"/>
+  <rect x="30" y="30" width="740" height="440" rx="10" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-dasharray="15,10" opacity="0.5"/>
+
+  <!-- Main Illustration -->
+  <g transform="translate(0, -20)">
+    <g transform="translate(400,250) scale(1.2)"><circle cx="0" cy="-10" r="12" fill="#1a1a1a"/><path d="M -15 20 L 15 20 L 25 80 L -25 80 Z" fill="#ff9933" stroke="#ffd700" stroke-width="0.5"/><path d="M -15 20 L 15 20 L 10 40 L -10 40 Z" fill="#3d1212"/><circle cx="0" cy="0" r="18" fill="#ffcc99"/><path d="M -15 -12 L 15 -12 L 0 -35 Z" fill="#ffd700" filter="url(#glow)"/><circle cx="0" cy="-20" r="3" fill="red"/></g><path d="M 300 400 L 500 400" stroke="red" stroke-width="8" opacity="0.6"/>
+  </g>
+
+  <!-- Title Plate -->
+  <g transform="translate(400, 440)">
+    <rect x="-320" y="-35" width="640" height="70" rx="20" fill="black" fill-opacity="0.8" stroke="url(#goldGrad)" stroke-width="3"/>
+    <text y="10" font-family="'Playfair Display', serif" font-size="28" font-weight="bold" fill="#ffd700" text-anchor="middle">24. BHARATA'S RETURN</text>
+  </g>
+</svg>
